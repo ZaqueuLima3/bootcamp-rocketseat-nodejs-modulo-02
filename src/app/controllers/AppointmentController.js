@@ -18,7 +18,7 @@ class AppointmentController {
       order: ['date'],
       limit: 20,
       offset: (page - 1) * 20,
-      attributes: ['id', 'date'],
+      attributes: ['id', 'date', 'past', 'cancelable'],
       include: [
         {
           model: User,
@@ -61,7 +61,7 @@ class AppointmentController {
     }
 
     /**
-     * Check uf provider_id is a provider
+     * Check if provider_id is a provider
      */
     const isProvider = await User.findOne({
       where: { id: provider_id, provider: true },
